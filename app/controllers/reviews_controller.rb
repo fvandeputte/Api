@@ -5,11 +5,11 @@ class ReviewsController < ApplicationController
         render json: @comments
     end
     def create
-    @article = Article.new(author: params[:author], comment: params[:comment], article_id: params[:id)
-    if @article.save
-      render json: @article, status: :created, location: @article
+    @review = Review.new(author: params[:author], comment: params[:comment], article_id: params[:id])
+    if @review.save
+      render json: @review, status: :created, location: @review
     else
-      render json: @article.errors, status: :unprocessable_entity
+      render json: @review.errors, status: :unprocessable_entity
     end
   end
 end
