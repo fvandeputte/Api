@@ -1,10 +1,11 @@
 class ArticlesController < ApplicationController
+  include ActionView::Helpers::TextHelper
   before_action :set_article, only: [:show, :update, :destroy]
 
   # GET /articles
   def index
-    @articles = Article.all
-    render json: @articles
+    @articles = Article.all.body.truncate(20)
+    render json: @articles, :except => [:updated_at]
   end
 
   # GET /articles/1
