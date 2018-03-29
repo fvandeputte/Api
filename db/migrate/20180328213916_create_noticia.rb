@@ -1,0 +1,11 @@
+class CreateNoticia < ActiveRecord::Migration[5.1]
+  def change
+    create_table :noticia do |t|
+      t.string :title
+      t.string :subtitle
+      t.string :body
+
+      t.timestamps
+    end
+  end
+end
