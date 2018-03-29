@@ -13,3 +13,4 @@ Article.create(title: 'Costa vuelve a trabajar con el grupo', subtitle: 'Apenas 
                  comenzaron a preparar el choque liguero del domingo ante el Villarreal. Werner se entrenó junto a San Román, meta del filial,
                   y Dos Santos, portero del Juvenil. El resto de la primera plantilla que trabajo sobre el césped del campo 4 fueron Lucas, Savic, 
                   Vitolo, Griezmann y Costa, que volvió al grupo tras no haber viajado a Moscú por el golpe que sufrió ante el Celta')
+Review.crate(author: 'fvandeputtem', comment: 'Vamos Atletico', article_id: 1)
