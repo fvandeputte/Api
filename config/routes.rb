@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   delete 'news/:id' => 'articles#destroy'
   put 'news/:id' => 'articles#update'
   patch 'news/:id' => 'articles#update'
+  get '/news/:id/comments' => 'comments#index'
 end
