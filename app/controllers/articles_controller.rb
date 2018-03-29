@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
   def create
     #@article = Article.new(article_params)
     @articles = Article.all
-    #render json: @articles, :except => [:updated_at]
+    render json: @articles, :except => [:updated_at]
     #if @article.save
      # render json: @article, status: :created, location: @article
     #else
