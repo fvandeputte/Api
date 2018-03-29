@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles
   def index
-    @articles = Article.all.body.truncate(20)
+    @articles = Article.all
     render json: @articles, :except => [:updated_at]
   end
 
