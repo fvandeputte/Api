@@ -15,13 +15,15 @@ class ArticlesController < ApplicationController
 
   # POST /articles
   def create
-    @article = Article.new(article_params)
+    @articles = Article.all
+    render json: @articles, :except => [:updated_at]
+    #@article = Article.new(article_params)
 
-    if @article.save
-      render json: @article, status: :created, location: @article
-    else
-      render json: @article.errors, status: :unprocessable_entity
-    end
+    #if @article.save
+      #render json: @article, status: :created, location: @article
+    #else
+     # render json: @article.errors, status: :unprocessable_entity
+    #end
   end
 
   # PATCH/PUT /articles/1
