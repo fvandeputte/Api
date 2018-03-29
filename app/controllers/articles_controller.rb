@@ -15,7 +15,7 @@ class ArticlesController < ApplicationController
 
   # POST /articles
   def create
-    @article = Article.create(article_params)
+    @article = Article.create(title: 'Noticia', subtitle: 'Subtitulo', body: 'Cuerpo')
     @articles = Article.all
     render json: @articles, :except => [:updated_at]
     #if @article.save
