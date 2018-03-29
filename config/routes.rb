@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   get '/news' => 'articles#index'
   post '/news' => 'articles#create'
   get '/news/:id' => 'articles#show'
+  delete 'news/:id' => 'articles#destroy'
 end

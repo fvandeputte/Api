@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1
   def show
-    render json: @article
+    render json: @article, :except => [:updated_at]
   end
 
   # POST /articles
@@ -35,6 +35,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   def destroy
     @article.destroy
+    render json: @article
   end
 
   private
@@ -45,6 +46,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def article_params
-      params.require(:article).permit(:title, :subtitle, :body)
+      params.permit(:title, :subtitle, :body)
     end
 end
