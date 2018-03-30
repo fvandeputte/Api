@@ -26,4 +26,5 @@ class ReviewsController < ApplicationController
             render json:@review, status: 200
 
         end
+    end
 end
