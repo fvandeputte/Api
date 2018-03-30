@@ -14,15 +14,17 @@ class ReviewsController < ApplicationController
     end
     def show
         @review = Review.where(id: params[:id_comment], article_id: params[:id])
-        render json: @review, :except => [:updated_at]
+        if not @review.empty?  
+            render json: @review, :except => [:updated_at]
+        end
     end
     def destroy
-        review = Review.where(id: params[:id_comment], article_id: params[:id])
-        if review.empty?
-            render review, status: :not_found
+        @review = Review.where(id: params[:id_comment], article_id: params[:id])
+        if @review.empty?
+            render @review, status: :not_found
 
         else
-            review.destroy
+            @review.destroy
             render json:@review, status: 200
         end
     end
