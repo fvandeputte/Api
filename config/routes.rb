@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   # Ahora los comentarios
   get '/news/:id/comments' => 'reviews#index'
   post '/news/:id/comments' => 'reviews#create'
+  get '/news/:id/comments/:id_comment' => 'reviews#show'
 end

@@ -11,5 +11,9 @@ class ReviewsController < ApplicationController
     else
       render json: @review.errors, status: :unprocessable_entity
     end
-  end
+    end
+    def show
+        @review = Review.where(id: params[:id_comment], article_id: params[:id])
+        render json: @review, :except => [:updated_at]
+    end
 end
