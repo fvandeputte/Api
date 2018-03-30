@@ -21,8 +21,8 @@ class ReviewsController < ApplicationController
     def destroy
         @review = Review.where(id: params[:id_comment], article_id: params[:id])
         if not @review.empty?
-            @review.destroy
             render json:@review, status: :ok
+            @review.destroy
         end
     end
 end
