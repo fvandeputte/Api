@@ -5,12 +5,12 @@ class ReviewsController < ApplicationController
         render json: @comments
     end
     def create
-    @review = Review.new(author: params[:author], comment: params[:comment], article_id: params[:id])
-    if @review.save
-      render json: @review, status: :created
-    else
-      render json: @review.errors, status: :unprocessable_entity
-    end
+        @review = Review.new(author: params[:author], comment: params[:comment], article_id: params[:id])
+        if @review.save
+          render json: @review, status: :created
+        else
+          render json: @review.errors, status: :unprocessable_entity
+        end
     end
     def show
         @review = Review.where(id: params[:id_comment], article_id: params[:id])
@@ -24,7 +24,6 @@ class ReviewsController < ApplicationController
         else
             @review.destroy
             render json:@review, status: 200
-
         end
     end
 end

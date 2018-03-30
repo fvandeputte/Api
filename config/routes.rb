@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   get '/news/:id/comments' => 'reviews#index'
   post '/news/:id/comments' => 'reviews#create'
   get '/news/:id/comments/:id_comment' => 'reviews#show'
-  delete 'news/:id/comments/:id_comment' => 'reviews#destroy'
+  delete '/news/:id/comments/:id_comment' => 'reviews#destroy'
 end
