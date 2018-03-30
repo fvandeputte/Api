@@ -16,6 +16,8 @@ class ReviewsController < ApplicationController
         @review = Review.where(id: params[:id_comment], article_id: params[:id])
         if not @review.empty?  
             render json: @review, :except => [:updated_at]
+        else
+            render json: @review, status: 404
         end
     end
     def destroy
