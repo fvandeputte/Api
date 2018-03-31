@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
     def show
         @review = Review.where(id: params[:id_comment], article_id: params[:id])
         if not @review.empty?  
-            render json: @review, :except => [:updated_at]
+            render json: @review.first, :except => [:updated_at]
         else
             render json: @review, status: 404
         end
@@ -24,13 +24,22 @@ class ReviewsController < ApplicationController
         @review = Review.where(id: params[:id_comment], article_id: params[:id])
         if not @review.empty?  
             @review.first.destroy
-            render json: @review, :except => [:updated_at]
+            render json: @review.first, :except => [:updated_at]
         else
-
             render json: @review, status: 404
         end
-        
-
-
     end
+    def update
+        @review = Review.where(id: params[:id_comment], article_id: params[:id])
+        if not @review.empty?  
+          @review.first.update(review_params)
+          render json: @review, status: 200
+        else
+          render json: @review, status: 404
+        end
+    end
+    def review_params
+      params.permit(:author, :comment)
+    end
+
 end
