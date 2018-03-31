@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   def index
     @articles = Article.all
-    render json: @articles.as_json(only: [:id, :title, :subtitle, :body.truncate(5),:created_at])
+    render json: @articles.as_json(only: [:id, :title, :subtitle, :body.truncate(5), :created_at])
   end
 
   # GET /articles/1
