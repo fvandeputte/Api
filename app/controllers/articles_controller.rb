@@ -54,7 +54,7 @@ class ArticlesController < ApplicationController
     collection = objects.map do |article|
     { id: article.id,
      subtitle: article.subtitle,
-     body: article.body.truncate(5)
+     body: article.body.truncate(5),
      created_at: article.created_at,
     }
     end
