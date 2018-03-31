@@ -5,7 +5,8 @@ class ArticlesController < ApplicationController
   # GET /articles
   def index
     @articles = Article.all
-    render json: @articles.as_json(only: [:id, :title, :subtitle, :body[0..5], :created_at])
+    render json_params_for(@articles)
+    
   end
 
   # GET /articles/1
@@ -48,4 +49,15 @@ class ArticlesController < ApplicationController
     def article_params
       params.permit(:title, :subtitle, :body)
     end
+
+  def json_params_for(objects)
+    collection = objects.map do |article|
+    { id: article.id,
+     subtitle: article.subtitle,
+     body: article.body.truncate(5)
+     created_at: article.created_at,
+    }
+    end
+    collection.to_json
+  end
 end
