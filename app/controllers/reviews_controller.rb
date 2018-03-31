@@ -38,6 +38,19 @@ class ReviewsController < ApplicationController
           render json: @review, status: 404
         end
     end
+    def update_put
+        if (params[:author].present? && params[:comment].present?)
+            @review = Review.where(id: params[:id_comment], article_id: params[:id])
+            if not @review.empty?  
+              @review.first.update(review_params)
+              render json: @review, status: 200
+            else
+              render json: @review, status: 404
+            end
+        else
+            render nothing: true, status: 404
+        end
+    end
     def review_params
       params.permit(:author, :comment)
     end

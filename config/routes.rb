@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   post '/news/:id/comments' => 'reviews#create'
   get '/news/:id/comments/:id_comment' => 'reviews#show'
   delete '/news/:id/comments/:id_comment' => 'reviews#destroy'
-  put '/news/:id/comments/:id_comment' => 'reviews#update'
+  put '/news/:id/comments/:id_comment' => 'reviews#update_put'
   patch '/news/:id/comments/:id_comment' => 'reviews#update'
 end
