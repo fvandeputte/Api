@@ -87,6 +87,7 @@ class ArticlesController < ApplicationController
   def json_params_for(objects)
     collection = objects.map do |article|
     { id: article.id,
+      title: article.title,
      subtitle: article.subtitle,
      body: article.body.truncate(500),
      created_at: article.created_at,
