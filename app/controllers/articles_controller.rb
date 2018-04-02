@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
     if not @article.empty?
       render json: @article.first, :except => [:updated_at]
     else
-      render :json => {:error => "not-found"}.to_json, :status => 404, content_type: "application/json"
+      render :json => {:error => "Not found"}.to_json, :status => 404, content_type: "application/json"
     end
     #@article = Article.where(id: params[:id])
     #if not @article.empty?  
