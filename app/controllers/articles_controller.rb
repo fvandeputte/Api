@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
         render json: @article.first, :except => [:updated_at]
     else
         @article_dos = Article.find(params[:id])
-        render json: @article_dos.errors, status: 404, content_type: "application/json"
+        render json: 'Not found', status: 404, content_type: "application/json"
     end
 
   end
