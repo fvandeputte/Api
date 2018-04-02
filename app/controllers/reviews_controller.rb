@@ -47,7 +47,7 @@ class ReviewsController < ApplicationController
             @review = Review.where(id: params[:id_comment], article_id: params[:id_article])
             if not @review.empty?  
               @review.first.update(review_params)
-              render json: @review.first, status: 200, location: @review, content_type: "application/json"
+              render json: @review.first, status: 200, location: @review.first, content_type: "application/json"
             else
               render :json => {:error => "Not found"}.to_json, :status => 404, content_type: "application/json"
             end
