@@ -38,14 +38,29 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /articles/1
   def update
-    if @article.update(article_params)
-      render json: @article, content_type: "application/json"
-    else
-      render json: @article.errors, status: :unprocessable_entity, content_type: "application/json"
+        @article = Article.where(id: params[:id_article])
+        if not @article.empty?  
+          @article.first.update(article_params)
+          render json: @article.first, status: 200, content_type: "application/json", :except => [:updated_at]
+        else
+          render :json => {:error => "Not found"}.to_json, :status => 404, content_type: "application/json"
+        end
     end
-  end
+  def update_put
+        if (params[:title].present? && params[:subtitle].present? && params[:created_at].present? && params[:id].present? && params[:body].present?)
+            @article = Article.where(id: params[:id_article])
+            if not @article.empty?  
+              @article.first.update(article_params)
+              render json: @article.first, status: 200, content_type: "application/json", :except => [:updated_at]
+            else
+              render :json => {:error => "Not found"}.to_json, :status => 404, content_type: "application/json"
+            end
+        else
+            render :json => {:error => "Should send all the fields"}.to_json, :status => 404, content_type: "application/json"
+        end
+    end
+
 
   # DELETE /articles/1
   def destroy

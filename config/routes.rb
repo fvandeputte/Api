@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post '/news' => 'articles#create'
   get '/news/:id' => 'articles#show'
   delete 'news/:id' => 'articles#destroy'
-  put '/news/:id' => 'articles#update'
+  put '/news/:id_article' => 'articles#update_put'
   patch '/news/:id' => 'articles#update'
   # Ahora los comentarios
   get '/news/:id/comments' => 'reviews#index'
