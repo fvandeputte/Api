@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
     def index 
         @article = Article.where(id: params[:id])
         if not @article.empty?  
-            render json: @article.first.comments, :except => [:updated_at], content_type: "application/json"
+            render json: @article.first.reviews, :except => [:updated_at], content_type: "application/json"
         else
             render :json => {:error => "Not found"}.to_json, :status => 404, content_type: "application/json"
         end
