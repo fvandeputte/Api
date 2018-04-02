@@ -12,9 +12,9 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1
   def show
-    @article = Article.find(params[:id])
-    if @article
-      render json: @article, :except => [:updated_at]
+    @article = Article.where(id: params[:id])
+    if not @article.empty?
+      render json: @article.first, :except => [:updated_at]
     else
       render :json => {:error => "not-found"}.to_json, :status => 404, content_type: "application/json"
     end
