@@ -27,7 +27,7 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1
   def update
     if @article.update(article_params)
-      render json: @article, , content_type: "application/json"
+      render json: @article, content_type: "application/json"
     else
       render json: @article.errors, status: :unprocessable_entity, content_type: "application/json"
     end
