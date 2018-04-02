@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   def index
     @articles = Article.all
-    render json: json_params_for(@articles), headers['Content-type'] = "application/json"
+    render json: json_params_for(@articles)
     
   end
 
