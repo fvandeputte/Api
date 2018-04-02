@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   def index
     @articles = Article.all
-    render json: json_params_for(@articles), , content_type: "application/json"
+    render json: json_params_for(@articles), content_type: "application/json"
     
   end
 
@@ -18,9 +18,9 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(title: params[:title], subtitle: params[:subtitle], body: params[:body])
     if @article.save
-      render json: @article, status: :created, location: @article, , content_type: "application/json"
+      render json: @article, status: :created, location: @article, content_type: "application/json"
     else
-      render json: @article.errors, status: :unprocessable_entity, , content_type: "application/json"
+      render json: @article.errors, status: :unprocessable_entity, content_type: "application/json"
     end
   end
 
@@ -29,14 +29,14 @@ class ArticlesController < ApplicationController
     if @article.update(article_params)
       render json: @article, , content_type: "application/json"
     else
-      render json: @article.errors, status: :unprocessable_entity, , content_type: "application/json"
+      render json: @article.errors, status: :unprocessable_entity, content_type: "application/json"
     end
   end
 
   # DELETE /articles/1
   def destroy
     @article.destroy
-    render json: @article, , content_type: "application/json"
+    render json: @article, content_type: "application/json"
   end
 
   private
