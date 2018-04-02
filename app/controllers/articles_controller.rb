@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   include ActionView::Helpers::TextHelper
-  before_action :set_article, only: [:show, :update, :destroy]
+  before_action :set_article, only: [, :update, :destroy]
 
   # GET /articles
   def index
@@ -12,7 +12,12 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1
   def show
+    @article = Article.where(id: params[:id])
+    if @article.empty?
+      render json: 'not found', content_type: "application/json"
+    else
     render json: @article, :except => [:updated_at], content_type: "application/json"
+    end
   end
 
   # POST /articles
