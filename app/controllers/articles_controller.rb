@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   include ActionView::Helpers::TextHelper
-  before_action :set_article, only: [:update, :destroy]
+  before_action :set_article, only: [:update]
 
   # GET /articles
   def index
@@ -49,8 +49,13 @@ class ArticlesController < ApplicationController
 
   # DELETE /articles/1
   def destroy
-    @article.destroy
-    render json: @article, content_type: "application/json"
+    @article = Article.where(id: params[:id])
+    if not @article.empty?
+      @article.first.destroy
+      render json: @article.first, :except => [:updated_at], content_type: "application/json"
+    else
+      render :json => {:error => "Not found"}.to_json, :status => 404, content_type: "application/json"
+    end
   end
 
   private
