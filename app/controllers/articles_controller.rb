@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-        @article = Article.where(id: params[:id_article])
+        @article = Article.where(id: params[:id])
         if not @article.empty?  
           @article.first.update(article_params)
           render json: @article.first, status: 200, content_type: "application/json", :except => [:updated_at]
