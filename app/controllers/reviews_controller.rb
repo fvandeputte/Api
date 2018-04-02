@@ -1,8 +1,12 @@
 class ReviewsController < ApplicationController
     def index 
-        @article = Article.find(params[:id])
-        @comments = @article.reviews
-        render json: @comments
+        @article = Article.where(id: params[:id])
+        if not @article.empty?  
+            render json: @article.first.comments, :except => [:updated_at], content_type: "application/json"
+        else
+            render :json => {:error => "Not found"}.to_json, :status => 404, content_type: "application/json"
+        end
+        
     end
     def create
         @review = Review.new(author: params[:author], comment: params[:comment], article_id: params[:id])
@@ -15,9 +19,9 @@ class ReviewsController < ApplicationController
     def show
         @review = Review.where(id: params[:id_comment], article_id: params[:id])
         if not @review.empty?  
-            render json: @review.first, :except => [:updated_at]
+            render json: @review.first, :except => [:updated_at], content_type: "application/json"
         else
-            render json: @review, status: 404
+            render :json => {:error => "Not found"}.to_json, :status => 404, content_type: "application/json"
         end
     end
     def destroy
@@ -26,20 +30,20 @@ class ReviewsController < ApplicationController
             @review.first.destroy
             render json: @review.first, :except => [:updated_at]
         else
-            render json: @review, status: 404
+            render :json => {:error => "Not found"}.to_json, :status => 404, content_type: "application/json"
         end
     end
     def update
         @review = Review.where(id: params[:id_comment], article_id: params[:id])
         if not @review.empty?  
           @review.first.update(review_params)
-          render json: @review, status: 200
+          render json: @review, status: 200, content_type: "application/json"
         else
-          render json: @review, status: 404
+          render :json => {:error => "Not found"}.to_json, :status => 404, content_type: "application/json"
         end
     end
     def update_put
-        if (params[:author].present? && params[:comment].present?)
+        if (params[:author].present? && params[:comment].present? && params[:created_at].present?)
             @review = Review.where(id: params[:id_comment], article_id: params[:id])
             if not @review.empty?  
               @review.first.update(review_params)
@@ -48,7 +52,7 @@ class ReviewsController < ApplicationController
               render json: @review, status: 404
             end
         else
-            render nothing: true, status: 404
+            render :json => {:error => "Not found"}.to_json, :status => 404, content_type: "application/json"
         end
     end
     def review_params
