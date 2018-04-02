@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
     if @article.save
       render json: @article, status: :created, location: @article, content_type: "application/json"
     else
-      render json: @article.errors, status: :unprocessable_entity, content_type: "application/json"
+      render json: @article.errors, status: :unprocessable_entity, location: @article, content_type: "application/json"
     end
   end
 
