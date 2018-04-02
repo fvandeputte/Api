@@ -13,11 +13,12 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   def show
     @article = Article.where(id: params[:id])
-    if @article.empty?
-      render json: 'not found', content_type: "application/json"
+    if not @article.empty?  
+        render json: @article.first, :except => [:updated_at]
     else
-      render json: @article.first, :except => [:updated_at], content_type: "application/json"
+        render json: @article, status: 404
     end
+
   end
 
   # POST /articles
