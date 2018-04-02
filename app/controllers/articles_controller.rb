@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   include ActionView::Helpers::TextHelper
-  before_action :set_article, only: [, :update, :destroy]
+  before_action :set_article, only: [:update, :destroy]
 
   # GET /articles
   def index
