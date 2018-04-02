@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
     if not @article.empty?  
         render json: @article.first, :except => [:updated_at]
     else
-        render status: 404
+        render status: 404, content_type: "application/json"
     end
 
   end
